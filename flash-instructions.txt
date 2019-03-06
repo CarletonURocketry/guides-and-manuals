@@ -1,5 +1,0 @@
-Run openocd in a directory with the openocd.cfg
-Run make build to build the .elf file
-Run make upload to flash the Xplained board
-
-global.h set led for production or xplained board.
