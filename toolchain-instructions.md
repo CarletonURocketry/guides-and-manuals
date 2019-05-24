@@ -4,18 +4,18 @@ In order to interface with the boards, you need to download and install
 openocd. The version of openocd you install must have been compiled with
 cmsis-dap support.
 
-Debian/Debian-based Linux Instructions:
+**Debian/Debian-based Linux Instructions:**
     `sudo apt install openocd`
 
-MacOS Instructions:
+**MacOS Instructions:**
     Install from MacPorts:
     `sudo port install openocd`
 
-Windows Instructions:
+**Windows Instructions:**
     Spin up a Linux virtual machine and pass the usb devices through to it.
 
 Run `openocd` in a directory with the `openocd.cfg` file.
-  >>> If you get the error: "Error: unable to open CMSIS-DAP device", run openocd
+  > If you get the error: "Error: unable to open CMSIS-DAP device", run openocd
   with root privileges.
 
 ## Compilation and Flashing
@@ -31,11 +31,9 @@ Toolchain (32-bit)". Extract this to a desired location.
 Openocd must be running in the background for the following commands to work.
 
 Run `make build CORTEX_TOOLCHAIN_BIN=<location_of_compiler_binary>` to build
-the `.elf` file. For example: `make build -j12
-CORTEX_TOOLCHAIN_BIN=~/Downloads/arm-none-eabi/bin`
+the `.elf` file. For example: `make build CORTEX_TOOLCHAIN_BIN=~/Downloads/arm-none-eabi/bin`
 
-Note: You can parallelize the build process by using the flag
-`-j<number_of_threads>`.
+Note: You can parallelize the build process to build the software faster by using the flag
+`-j<number_of_threads>` with `make build`.
 
-Run `make upload CORTEX_TOOLCHAIN_BIN=~/Downloads/arm-none-eabi/bin` to flash
-the Xplained board.
+To flash the Xplained board, run the same command as above but using `make upload` instead of `make build`.
