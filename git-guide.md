@@ -1,24 +1,21 @@
-CUIS Git Guide
-**************
+# CUIS Git Guide
 
-Setting Up Your Git Environment
-===============================
+## Setting Up Your Git Environment
 
 First, make sure that Git is installed on your computer. A guide to installing
 Git on various operating systems can be found here (although Linux is the
 easiest to get it working on):
 
-https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-Configuring Git
----------------
+### Configuring Git
 
 Git stores configuration settings in three different locations:
 
 1. /etc/gitconfig -- Stores system-wide Git settings
 2. ~/.gitconfig or ~/.config/git/config -- User-specific Git settings
 3. .git/config -- Repository-specific settings (inside the .git directory of
-                    your repositories)
+your repositories)
 
 The more local the configuration, the more precedence it has over global
 configuration options. If you define "user.name" differently in your
@@ -27,13 +24,13 @@ precedence for that user.
 
 Configuration is done using the command `git config` as seen below.
 
-Basic Configuration
--------------------
+### Basic Configuration
 
 The following information, your name and email address, are important to set
 because this is information embedded in every commit.
 
 `git config --global user.name "<Your Name>"`
+
 `git config --global user.email "<Your Email>"`
 
 This will set your name and email system-wide. To make this information local to
@@ -48,42 +45,36 @@ command:
 The command `git config --list` can be used to see all options which have been
 set.
 
-The Three States of Git
-=======================
+## The Three States of Git
 
-Working Directory
------------------
+### Working Directory
 
 The working directory is a single checkout of one commit or one version of the
 repository. It is all the files that you can see and that which you are able to
 currently make changes to.
 
-Staging Area
-------------
+### Staging Area
 
 The staging area is the place to put files which have changes that you wish to
 commit to the repository. It is a representation of all the changes that will be
 included in the next commit. You place files in this area using the command `git
 add <filename>`.
 
-Committed
----------
+### Committed
 
 Committed files/changes go into the .git directory (the repository). These are
 files and changes which are a part of the repository. Commits form the basis of
 your repository and each commit acts like a snapshot of the project at the time
 the commit was made.
 
-The Basics of Using Git
-=======================
+## The Basics of Using Git
 
 To get more information on specific git commands, you can issue the command:
 `git help <action>` or `man git-<action>`. A simple list of the options for an
 action can be accessed by adding `-h` to the end of a command. For example: `git
 add -h`.
 
-Creating or Cloning a Repository
---------------------------------
+### Creating or Cloning a Repository
 
 If you want to take an existing directory and start version-controlling it,
 ensure your current working directory is the top level directory of the project
@@ -96,8 +87,7 @@ can be the path to a directory on your computer, or it can be the URL of a
 remote Git repository. This will place the downloaded repository into a
 directory within the current directory.
 
-Editing Files
--------------
+### Editing Files
 
 Files, as seen by Git, exist in four different states:
 
@@ -115,8 +105,7 @@ a file, the current version of that file is set to be committed. If you then
 make further changes to that file before committing, those new changes will not
 be committed until you run `git add` again.
 
-Ignoring Files
---------------
+### Ignoring Files
 
 Git has a convenient way to ignore files. If you use a command like `git add *`
 to quickly add several files to the staging area, you may not want to add things
@@ -125,15 +114,16 @@ to specify what to exclude from your repository. The file is a plain text file
 with each line specifying a file or a group of files to exclude. For example, a
 .gitignore file which looks like the following:
 
+```
     *.o
     *.exe
     TODO.txt
+```
 
 Will tell Git to exclude all files with the .o and .exe extensions as well as
 the single file called TODO.txt.
 
-Making Commits
-==============
+## Making Commits
 
 Commits are the basis of a version control system. In Git, they represent
 snapshots of the changes made to your codebase. It is because of this that
@@ -154,8 +144,7 @@ viewed using the command `git log`. A useful set of flags to pass to the log
 command which will show you commits as a graph is `--all --online --graph
 --decorate`.
 
-What to Commit
---------------
+### What to Commit
 
 When making a commit, you want to keep them as atomic as possible. This means
 you want to make your commits describe one change and only one change. A change
@@ -166,12 +155,19 @@ question to ask is: "Does it make sense to split this commit up into two or more
 separate commits?" If so, then you should split that commit up.
 
 Here is an example:
-A bad, non-atomic commit: "Fix button not working in startup screen and add
-			   background image".
-Good, atomic commits: "Fix button not working". "Add background image".
+**A bad, non-atomic commit:**
 
-Writing a Good Commit Message
------------------------------
+```
+Fix button not working in startup screen and add background image".
+```
+
+**Good, atomic commits:**
+
+```
+"Fix button not working". "Add background image".
+```
+
+### Writing a Good Commit Message
 
 Writing a good commit message is the most important part of making a commit
 since commits document the history of your project. A good commit message should
@@ -201,29 +197,33 @@ length to 72 characters because this makes the body of the message print nicely
 centred on an 80 column display.
 
 Commits should be written using the imperative grammatical mood. This means you
-should write your message like "Fix button not working" instead of "Fixed button
-not working". We do this because this is how Git itself writes its automated
-commit messages and doing it this way makes the commit history look and feel
-consistent. Think about your commits like: "This commit will [do something]".
+should write your message like "Fix broken button element" instead of "Fixed
+broken button element". We do this because this is how Git itself writes its
+automated commit messages (e.g. when doing a merge commit) and doing it this way
+makes the commit history look and feel consistent. Think about your commits
+like: "This commit will [do something]".
 
 Here is an example:
 
-A bad commit:
+**A bad commit:**
 
+```
 fixed button on startup page to make it not segfault when it was clicked with
 text that was too long on the dialog box.
+```
 
-A good commit:
+**A good commit:**
 
+```
 Fix cancel button buffer overflow on startup page
 
 The button on the startup page is not working properly. It causes a segmentation
 fault when it is clicked if the text entered into the dialog box is over the
 expected character limit. Rewrite the handler function to use snprintf because
 snprintf has built-in buffer protections.
+```
 
-Branching and Workflows in Git
-==============================
+## Branching and Workflows in Git
 
 One of the great advantages that Git has over other version control systems is
 that it makes branches very easy to work with. Branches are a way to make
@@ -247,8 +247,7 @@ the feature-branch workflow. There are many more, and you should choose the one
 that fits your project structure the best. There is no one-size-fits-all
 workflow.
 
-Managing Branches
------------------
+### Managing Branches
 
 Branches can be created using the command `git checkout -b <branch_name>`. This
 will create a new branch and change your working area over to that branch. Also,
@@ -259,12 +258,11 @@ way as in any other branch.
 Branches can be deleted using the command `git branch -d`.
 
 Two branches may be merged using the command `git merge <branch_name>`. This
-will merge the branch <branch_name> into whichever branch you are currently
-working on. If you wanted to merge branch "test" onto "master", you would `git
+will merge the branch `<branch_name>` into whichever branch you are currently
+working on. If you wanted to merge branch `test` onto `master`, you would `git
 checkout master` and then `git merge test`.
 
-Pushing to and Pulling from a Remote Repository
------------------------------------------------
+### Pushing to and Pulling from a Remote Repository
 
 A remote repository is just a repository that isn't the repository in your
 current directory. A remote repository can exist somewhere on the internet, or
@@ -284,27 +282,25 @@ the remote repository. In the case of a merge, you may have to fix merge
 conflicts (a good guide to doing so can be found in the links below).
 
 Pushing to a repository is as easy as the command `git push <remote_name>
-<branch_name>` where branch_name is the name of the branch you want to push to
-remote_name. If changes exist on the remote branch that are newer than your
+<branch_name>` where `branch_name` is the name of the branch you want to push to
+`remote_name`. If changes exist on the remote branch that are newer than your
 changes, git will prompt you to pull and merge your changes with those on the
 remote repository and then you may push after that merge is complete.
 
-Overview of Commands
-====================
+## Overview of Commands
 
-`git init`     -- Initialize a repository in the current working directory
-`git clone`    -- Clone a remote repository and create a copy on your computer
-`git config`   -- Change configuration options
-`git status`   -- View the status of the repository
-`git add`      -- Add a file to the staging area
-`git commit`   -- Commit the files in the staging area
-`git checkout` -- Change the working area to the specified branch or commit
-`git branch`   -- Manage branches
-`git pull`     -- Pull from a remote repository
-`git push`     -- Push to a remote repository
+* `git init`     -- Initialize a repository in the current working directory
+* `git clone`    -- Clone a remote repository and create a copy on your computer
+* `git config`   -- Change configuration options
+* `git status`   -- View the status of the repository
+* `git add`      -- Add a file to the staging area
+* `git commit`   -- Commit the files in the staging area
+* `git checkout` -- Change the working area to the specified branch or commit
+* `git branch`   -- Manage branches
+* `git pull`     -- Pull from a remote repository
+* `git push`     -- Push to a remote repository
 
-Further Commands and Reading
-============================
+## Further Commands and Reading
 
 Git is very complex and very powerful. If you want to learn more, check out
 these links:
