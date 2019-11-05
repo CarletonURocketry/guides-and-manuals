@@ -12,14 +12,19 @@ easiest to get it working on):
 
 Git stores configuration settings in three different locations:
 
-1. /etc/gitconfig -- Stores system-wide Git settings
-2. ~/.gitconfig or ~/.config/git/config -- User-specific Git settings
-3. .git/config -- Repository-specific settings (inside the .git directory of
-your repositories)
+```
+1. /etc/gitconfig         — Stores system-wide Git settings
+
+2. ~/.gitconfig OR
+   ~/.config/git/config   — User-specific Git settings
+
+3. .git/config            – Repository-specific settings (inside the .git
+                            directory of your repositories)
+```
 
 The more local the configuration, the more precedence it has over global
-configuration options. If you define "user.name" differently in your
-~/.gitconfig than in /etc/gitconfig, the value in ~/.gitconfig will take
+configuration options. If you define the option `user.name` differently in your
+`~/.gitconfig` than in `/etc/gitconfig`, the value in `~/.gitconfig` will take
 precedence for that user.
 
 Configuration is done using the command `git config` as seen below.
