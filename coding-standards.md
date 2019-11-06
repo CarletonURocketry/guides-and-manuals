@@ -32,16 +32,12 @@ that their purpose is unambiguous at first glance. The names of files,
 functions, and variables are forms of documentation in your code. Optimize for
 readability.
 
-* **GOOD:** `struct packetStruct_t PacketStruct = {...};`
-* **GOOD:** `double xCoord = locateXPosition();`
-* **BAD:**  `struct pst PStruct = {...};`
-* **BAD:**  `double x = findX();`
+Variables should be named using `camelCase` whereas functions and structs should
+be named using `snake_case`. This helps to easily differentiate between a
+variable and a function/struct type at first glance.
 
-Variables should be named using `camelCase` whereas functions should be named
-using `underscores_to_separate_words`. This helps to easily differentiate between
-a variable and a function at first glance.
-
-Type constructs should be defined with the suffix `_t` as in `myType_t`.
+Type constructs (e.g. structs) should be defined with the suffix `_t` as in
+`myType_t`.
 
 Global variables should be defined with the suffix `_g` as in `globalVar_g`
 
@@ -54,6 +50,17 @@ identify the variable as a structure and seeing `union` helps to identify the
 variable as a union. Hiding this behind a typedef means you need to write fewer
 characters but it also increases the amount of pre-requisite knowledge that
 someone needs in order to understand your code.
+
+Files should be named using `kebab-case` because it looks pretty.
+
+* **GOOD:** `int altimeter_get_height(void){...}`
+* **GOOD:** `struct packet_struct_t {...};`
+* **GOOD:** `double rocketHeight = altimeter_get_height();`
+* **GOOD:** `initialize-peripherals.c`
+* **BAD:**  `int getH(void){...}`
+* **BAD:**  `struct pst PStruct{...};`
+* **BAD:**  `double x = get_h();`
+* **BAD:**  `InitPeripherals.c`
 
 ## Declaring/Assigning Variables:
 
@@ -80,8 +87,8 @@ bar;
 
 ## Macros:
 
-Macros should be written in uppercase snake case. This helps to differentiate
-them from both variables and functions:
+Macros (defines and enums) should be written in uppercase snake case. This helps
+to differentiate them from both variables and functions:
 
 * **GOOD:** `#define MAX_LENGTH 1024`
 * **BAD:**  `#define maxLength 2014`
