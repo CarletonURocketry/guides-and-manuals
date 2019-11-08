@@ -1,4 +1,4 @@
-# CUINSPACE -- C CODING STANDARDS
+# CUInSpace – C Coding Standards
 
 ```
 "Indeed, the ratio of time spent reading versus writing is well over 10 to 1.
