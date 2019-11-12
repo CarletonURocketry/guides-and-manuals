@@ -23,7 +23,7 @@ repository maintainers and contributors can post things that need to be done.
 Anything from bug fixes to feature requests are allowed. Let's take our
 2019-avionics repository as an example:
 
-![Images Board]/images/2019-avionics-issues.png
+![Images Board](/images/2019-avionics-issues.png)
 
 As you can see, there are a number of issues in the issues tab of this
 repository.
@@ -44,7 +44,7 @@ then click on the Assign menu in the top right, then you can choose to assign
 the issue to yourself which will make your picture appear next to that issue so
 others can see that you are working on it.
 
-![Issue Selection]/images/2019-avionics-issue-selection.png
+![Issue Selection](/images/2019-avionics-issue-selection.png)
 
 ## Create a New Branch in Your Local Repository
 
@@ -83,7 +83,7 @@ This is how you get your work into our final product. Creating a pull request is
 as simple as navigating to the Pull Requests tab in the repository and clicking
 the "New Pull Request" button.
 
-![Pull Request Tab]/imags/new-pull-request.png
+![Pull Request Tab](/imags/new-pull-request.png)
 
 Once you click this button, you will be presented with a page where you can
 select which branch you want to merge into which other branch. You should change
@@ -92,7 +92,7 @@ on "master". This will present you with a list of commits, files changed, and
 will let you know if the branches can be merged automatically or not (don't
 worry if they cannot be, we will work out the merge conflicts).
 
-![Pull Request Branch Selected]/images/pull-request.png
+![Pull Request Branch Selected](/images/pull-request.png)
 
 Once you've clicked the "Create Pull Request" button, you are presented with a
 little comments box where you can explain your changes and anything else
