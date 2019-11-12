@@ -318,3 +318,7 @@ Also, some other commands which may be useful but which haven't been touched on
 in this guide include:
 
 `git diff` ,`git tag`, `git rebase`, `git remote`.
+
+This [guide on using git rebase](https://git-rebase.io/) is an excellent resource for that particular command.
+
+If you're interested in using git outside of the GitHub platform (e.g. contributing to the Linux kernel) then you may also be interested in this resource: https://git-send-email.io/.
