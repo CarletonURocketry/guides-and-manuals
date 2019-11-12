@@ -1,5 +1,4 @@
-# How to Do Work
-## How to Contribute to CUInSpace
+# Contribute to CUInSpace in These 8 Easy Steps!
 
 Please make sure that you fully understand the content of this guide before you
 begin working on CUInSpace projects. This will detail how to pick an issue to
