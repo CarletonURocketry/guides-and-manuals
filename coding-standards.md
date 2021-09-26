@@ -32,34 +32,34 @@ that their purpose is unambiguous at first glance. The names of files,
 functions, and variables are forms of documentation in your code. Optimize for
 readability.
 
-Variables should be named using `camelCase` whereas functions and structs should
-be named using `snake_case`. This helps to easily differentiate between a
-variable and a function/struct type at first glance.
+Variables, functions and structs should be named using `snake_case`. 
 
-Type constructs (e.g. structs) should be defined with the suffix `_t` as in
-`myType_t`.
+Types name with `typedef` should be defined with the suffix `_t` as in
+`my_type_t`.
 
-Global variables should be defined with the suffix `_g` as in `globalVar_g`
+Global variables should be defined with the suffix `_g` as in `global_var_g`
 
 Functions should have a prefix indicating which module they are a part of. For
-example: `int sd_write_block(...)` if the function is part of the SD card
+example: `int sdspi_write(...)` if the function is part of the SPI SD card
 driver.
 
 Generally do not `typedef` unions and structures. Seeing `struct` helps to
 identify the variable as a structure and seeing `union` helps to identify the
 variable as a union. Hiding this behind a typedef means you need to write fewer
 characters but it also increases the amount of pre-requisite knowledge that
-someone needs in order to understand your code.
+someone needs in order to understand your code. Do `typedef` very complicated
+type names such as function pointer types as this makes code that uses them
+easier to read quickly.
 
 Files should be named using `kebab-case` because it looks pretty.
 
 * **GOOD:** `int altimeter_get_height(void){...}`
 * **GOOD:** `struct packet_struct_t {...};`
-* **GOOD:** `double rocketHeight = altimeter_get_height();`
+* **GOOD:** `double rocket_height = altimeter_get_height();`
 * **GOOD:** `initialize-peripherals.c`
 * **BAD:**  `int getH(void){...}`
 * **BAD:**  `struct pst PStruct{...};`
-* **BAD:**  `double x = get_h();`
+* **BAD:**  `double X = get_h();`
 * **BAD:**  `InitPeripherals.c`
 
 ## Declaring/Assigning Variables:
@@ -127,11 +127,6 @@ where braces are on their own line for functions, on the same line as control
 statements, and are on every control statement no matter how many lines they
 contain:
 
-As a point of convenience, an `else` or `else if` should be on the line below
-the closing brace of the above control statement as this makes it easy to select
-the entire block of code that the statement occupies if it needs to be cut,
-without also deleting the closing brace of the `if` statement above it.
-
 ```
 int function(int arg1, char* arg2)
 {
@@ -139,8 +134,7 @@ int function(int arg1, char* arg2)
         <multiple>
         <different>
         <statements>
-    }
-    else {
+    } else {
         <single_statement>
     }
 }
@@ -149,17 +143,19 @@ int function(int arg1, char* arg2)
 ## Ternary Operator Conventions:
 
 Use of the ternary operator should be limited to simple statements with no
-complex logic:
+complex logic. Do not use nested ternary operators.
 
 * **GOOD:** `x = (y == 10) ? 2 : 5;`
-* **BAD:**  `x = (yStruct->size == fillRect(20,50,10)) ? yStruct->size+3 : 5;`)
+* **BAD:**  `x = (yStruct->size == fillRect(20,50,10)) ? yStruct->size+3 : 5;`
+* **BAD** `x = (len == 0) ? 0 : ((len > 5) ? 5 : len);`
 
 ## Goto Conventions:
 
 `goto`s should be avoided at (almost) all cost. While they are essential in
 Assembly programming, in C they make the code far harder to follow. In cases
 where a `goto` must be used, it should only ever be used in error handling and
-should only be used to jump within the same function. Optimize for readability.
+should only be used to jump within the same function. A `goto` should only ever
+be used to jump forwards within a function. Optimize for readability.
 
 ## Spacing Conventions:
 
@@ -210,12 +206,13 @@ Every function should be preceded by a comment block explaining its purpose,
 arguments, and return values as such:
 ```
 /**
- * @fn static inline void start_next_transaction (void)
- * @brief Starts the next queued transaction if there is one and there is
- *  no currently active transaction. This function is inline so that is can be
- *  safely called from an ISR.
- * [One or more @param directives describing input parameters]
- * [One @return directive describing what is returned]
+ *  Starts the next queued transaction if there is one and there is
+ *  no currently active transaction.
+ *
+ *  @note It is safe to call this function from an interrupt context.
+ *
+ *  [One or more @param directives describing input parameters]
+ *  [One @return directive describing what is returned]
  */
 static inline void start_next_transaction (void)
 {
@@ -226,6 +223,9 @@ static inline void start_next_transaction (void)
 The `@xxxxx` directives are used so that the Doxygen documentation generator
 program can recognize and include this information in automatically generated
 documentation.
+
+Structure, unions and enumumerations should also have a doxygen comment
+describing them and a doxygen comment for each memeber.
 
 Furthermore, important variables or odd looking or odd feeling lines or blocks
 of code should be accompanied by comments preceding them which explain their
@@ -245,11 +245,11 @@ edited on. Doxygen style commenting should be used, like so:
  * Last Author: <name_of_most_recent_author>
  * Last Edited On: <date_of_most_recent_change>
  */
- ```
+```
 
  It is perfectly okay to put a big block of documentation at the top of the file
  underneath this information if it will be helpful to someone who needs to work
- with the code contained in that file. As an example, see the top of `sd.c`.
+ with the code contained in that file. As an example, see the top of `sdspi.c`.
  This documentation should contain only essential information about things like
  the overall procedure that the code follows, resources used as references (e.g.
  links to websites, names of books), and any large workarounds or issues with
